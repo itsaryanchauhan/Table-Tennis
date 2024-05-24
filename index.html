@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Tennis Tournament Manager</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <ul>
+                <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
+                <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+            </ul>
+        </nav>
+        <h1>Table Tennis Tournament Manager</h1>
+        <div class="input-group">
+            <input type="text" id="playerInput" placeholder="Enter player name">
+            <button onclick="addPlayer()">Add Player</button>
+        </div>
+        <h2>Quick Add Players</h2>
+        <div id="quickAddPlayers">
+            <button onclick="quickAddPlayer('Aryan Chauhan')">Aryan Chauhan</button>
+            <button onclick="quickAddPlayer('Kushagra Rastogi')">Kushagra Rastogi</button>
+            <button onclick="quickAddPlayer('Aditya Bansal')">Aditya Bansal</button>
+            <button onclick="quickAddPlayer('Aviral')">Aviral</button>
+        </div>
+        <button class="btn-generate" onclick="generateTeams()">Generate Teams & Fixtures</button>
+        <h2>Players</h2>
+        <ul id="playerList"></ul>
+        <h2>Teams</h2>
+        <table id="teamAssignments"></table>
+        <h2>Fixtures</h2>
+        <div id="fixtures"></div>
+        <h2>Team Wins</h2>
+        <div id="teamWins"></div>
+        <h2>Playoff Matches</h2>
+        <div id="playoffs"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>
