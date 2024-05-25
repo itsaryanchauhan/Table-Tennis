@@ -2,82 +2,107 @@ body, html {
     margin: 0;
     padding: 0;
     font-family: 'Arial', sans-serif;
-    background-color: #f4f4f4;
+    background-image: url('../images/background.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh;
 }
 
-.container {
-    padding: 20px;
-    max-width: 600px;
-    margin: auto;
-}
-
-.navbar ul {
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-    overflow: hidden;
-    background-color: #333;
-}
-
-.navbar li {
-    float: left;
-}
-
-.navbar li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    transition: background-color 0.3s, color 0.3s;
-}
-
-.navbar li a:hover {
-    background-color: #555;
-    color: #ddd;
-}
-
-.input-group {
+header {
+    background-color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
     display: flex;
-    margin-bottom: 20px;
+    align-items: center;
+    box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.75);
+    z-index: 1000;
 }
 
-input {
-    flex: 1;
-    padding: 10px;
+header img {
+    height: 80px;
+    margin-left: 40px;
+}
+
+header ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+header li {
+    margin: 0 20px;
+}
+
+header li a {
+    color: black;
+    text-decoration: none;
     font-size: 16px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
+    font-weight: bold; /* Improved visibility */
 }
 
-button {
-    padding: 10px 20px;
-    background-color: #007BFF;
+.main-content {
+    padding: 30px;
+    margin-top: 120px;
+    text-align: center;
+}
+
+.input-group, .btn-generate, #quickAddPlayers, #playerList, #teamAssignments, #fixtures, #teamWins, #playoffs {
+    background-color: rgba(255, 255, 255, 0.9); /* Increased opacity for better readability */
+    border-radius: 15px;
+    padding: 20px;
+    margin: 10px auto;
+    width: 80%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn-generate, .btn-generate-playoffs {
     color: white;
+    background-color: #007BFF;
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    padding: 10px 20px;
     cursor: pointer;
+    display: block;
+    margin: 20px auto;
+    font-size: 18px; /* Larger font for better readability */
 }
 
-button:hover {
+.btn-generate:hover, .btn-generate-playoffs:hover {
     background-color: #0056b3;
 }
 
-ul {
-    list-style-type: none;
-    padding: 0;
+.team-btn {
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    background-color: #007BFF; /* Standardized button color for consistency */
 }
 
-li {
-    background-color: white;
+.team-btn.winner {
+    background-color: green;
+}
+
+.team-btn.loser {
+    background-color: red;
+}
+
+input, button {
+    margin: 5px;
     padding: 10px;
-    margin-bottom: 5px;
-    border-radius: 5px;
+    font-size: 16px;
+    border: 1px solid #ccc; /* Added border for better visibility */
 }
 
 table {
     width: 100%;
+    margin: 20px auto;
     border-collapse: collapse;
 }
 
