@@ -7,36 +7,46 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <nav class="navbar">
+    <header>
+        <img src="https://codetheweb.blog/assets/img/icon2.png" alt="Logo of Table Tennis Tournament Manager">
+        <nav>
             <ul>
-                <li><a href="https://github.com/yourusername" target="_blank">GitHub</a></li>
-                <li><a href="https://linkedin.com/in/yourusername" target="_blank">LinkedIn</a></li>
+                <li><a href="#" aria-label="Home Page">Home</a></li>
+                <li><a href="#" aria-label="About Us">About</a></li>
+                <li><a href="#" aria-label="Pricing Information">Pricing</a></li>
+                <li><a href="#" aria-label="Terms of Use">Terms of use</a></li>
+                <li><a href="#" aria-label="Contact Us">Contact</a></li>
             </ul>
         </nav>
+    </header>
+    <div class="main-content" role="main">
         <h1>Table Tennis Tournament Manager</h1>
         <div class="input-group">
-            <input type="text" id="playerInput" placeholder="Enter player name">
-            <button onclick="addPlayer()">Add Player</button>
+            <label for="playerInput">Enter player name:</label>
+            <input type="text" id="playerInput" placeholder="Enter player name" aria-required="true">
+            <button onclick="addPlayer()" aria-label="Add player to list">Add Player</button>
         </div>
         <h2>Quick Add Players</h2>
-        <div id="quickAddPlayers">
-            <button onclick="quickAddPlayer('Aryan Chauhan')">Aryan Chauhan</button>
-            <button onclick="quickAddPlayer('Kushagra Rastogi')">Kushagra Rastogi</button>
-            <button onclick="quickAddPlayer('Aditya Bansal')">Aditya Bansal</button>
-            <button onclick="quickAddPlayer('Aviral')">Aviral</button>
+        <div id="quickAddPlayers" role="group" aria-label="Quick add player buttons">
+            <button onclick="quickAddPlayer('Aryan Chauhan')" aria-label="Add Aryan Chauhan">Aryan Chauhan</button>
+            <button onclick="quickAddPlayer('Kushagra Rastogi')" aria-label="Add Kushagra Rastogi">Kushagra Rastogi</button>
+            <button onclick="quickAddPlayer('Aditya Bansal')" aria-label="Add Aditya Bansal">Aditya Bansal</button>
+            <button onclick="quickAddPlayer('Aviral')" aria-label="Add Aviral">Aviral</button>
         </div>
-        <button class="btn-generate" onclick="generateTeams()">Generate Teams & Fixtures</button>
+        <button class="btn-generate" onclick="generateTeams()" aria-label="Generate teams and fixtures">Generate Teams & Fixtures</button>
+        <button class="btn-generate-playoffs" onclick="generatePlayoffs()" aria-label="Generate playoff fixtures">Generate Playoff Fixtures</button>
         <h2>Players</h2>
-        <ul id="playerList"></ul>
+        <ul id="playerList" aria-live="polite"></ul>
         <h2>Teams</h2>
-        <table id="teamAssignments"></table>
+        <table id="teamAssignments" role="table" aria-describedby="teamAssignmentsDesc">
+            <caption id="teamAssignmentsDesc">List of teams and their members</caption>
+        </table>
         <h2>Fixtures</h2>
-        <div id="fixtures"></div>
+        <div id="fixtures" role="region" aria-live="polite"></div>
         <h2>Team Wins</h2>
-        <div id="teamWins"></div>
+        <div id="teamWins" role="region" aria-live="polite"></div>
         <h2>Playoff Matches</h2>
-        <div id="playoffs"></div>
+        <div id="playoffs" role="region" aria-live="polite"></div>
     </div>
     <script src="js/script.js"></script>
 </body>
