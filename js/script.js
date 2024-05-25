@@ -6,7 +6,7 @@ let playoffs = [];
 document.addEventListener('DOMContentLoaded', () => {
     updatePlayerList();
     window.addEventListener('scroll', function() {
-        const navbar = document.querySelector('.navbar');
+        const navbar = document.querySelector('header');
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
         } else {
@@ -156,13 +156,78 @@ function recordPlayoffWinner(team1, team2, matchIndex) {
 }
 
 function updatePlayoffMatches(winner, matchIndex) {
-    // Logic to handle progression in playoffs based on winners
+    // Check if both semi-finals are complete
     if (playoffs.every(match => match.winner !== null)) {
-        // All semi-finals are complete, schedule final matches
-        scheduleFinals();
+        // Identify winners from both semi-finals
+        const firstWinner = playoffs[0].winner;
+        const secondWinner = playoffs[1].winner;
+        
+        // Schedule final match based on winners
+        playoffs.push({
+            team1: firstWinner,
+            team2: secondWinner,
+            matchType: 'final',
+            winner: null
+        });
+        
+        displayPlayoffFixtures();
     }
 }
 
 function scheduleFinals() {
-    // Logic to schedule final matches based on semi-final winners
+    // Logic specific to your desired final match format (e.g., best-of-3 series)
+    // This example simply displays a message indicating the finalists
+    const finalists = playoffs.slice(-1)[0]; // Get the final match object
+    const finalMessage = `The Final Match will be between Team ${finalists.team1} and Team ${finalists.team2}`;
+    alert(finalMessage);
+}
+
+// Assuming previous JavaScript setup, add this function
+function setupMatchClicks() {
+    const matches = document.querySelectorAll('.match');
+    matches.forEach(match => {
+        match.addEventListener('click', function() {
+            const winner = this.getAttribute('data-team');
+            recordWinner(winner, this.getAttribute('data-index'));
+        });
+    });
+}
+
+function displayFixtures() {
+    const fixturesDiv = document.getElementById('fixtures');
+    fixturesDiv.innerHTML = '';
+    matches.forEach((match, index) => {
+        const matchDiv = document.createElement('div');
+        matchDiv.classList.add('match');
+        matchDiv.setAttribute('data-index', index);
+        matchDiv.setAttribute('data-team', match.team1);
+        matchDiv.innerHTML = `Match ${index + 1}: <button class="team-btn">${match.team1}</button> vs <button class="team-btn">${match.team2}</button>`;
+        fixturesDiv.appendChild(matchDiv);
+    });
+    setupMatchClicks();
+}
+
+function recordWinner(team1, team2, matchIndex) {
+    const winnerInput = prompt(`Enter winner for Match between Team ${team1} and Team ${team2}: (Enter ${team1} or ${team2})`).toUpperCase();
+    if (winnerInput !== team1 && winnerInput !== team2) {
+        alert("Invalid team name entered. Please try again.");
+        return;
+    }
+
+    // Check if the matchIndex is within the bounds of the matches array
+    if (matchIndex >= 0 && matchIndex < matches.length) {
+        matches[matchIndex].winner = winnerInput;
+
+        const winnerElement = document.getElementById(`winner${matchIndex}`);
+        if (winnerElement) {
+            winnerElement.textContent = ` Winner: Team ${winnerInput}`;
+        } else {
+            console.error(`Element with ID 'winner${matchIndex}' not found.`);
+        }
+
+        updateTeamWins(winnerInput);
+        checkAllMatchesCompleted();
+    } else {
+        console.error(`No match found at index ${matchIndex}. Please check the index and try again.`);
+    }
 }
