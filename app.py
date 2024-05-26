@@ -4,6 +4,9 @@ import random
 # List of pre-defined players
 players = ["John", "Sarah", "Michael", "Emily"]
 
+if 'match_results' not in st.session_state:
+    st.session_state['match_results'] = {}
+
 # Function to generate fixture for singles or doubles
 def generate_fixture(players, is_doubles):
     fixture = []
@@ -51,16 +54,15 @@ fixture_table = st.table([fix for fix in fixture])
 # Handle match results
 # Match Results
 st.subheader("Match Results")
-match_results = {}
 for match in fixture:
   team1, team2 = match.split(" - ")[1].split(" vs ")
   col1, col2 = st.columns(2)
   with col1:
-    if st.button(team1, key=match):  # Add unique key based on the match
-      match_results[match] = team1
+    if st.button(team1, key=match):
+      st.session_state['match_results'][match] = team1
   with col2:
-    if st.button(team2, key=f"{match}_2"):  # Use a different key for team2 button
-      match_results[match] = team2
+    if st.button(team2, key=f"{match}_2"):
+      st.session_state['match_results'][match] = team2
 
 
 # Display match results
