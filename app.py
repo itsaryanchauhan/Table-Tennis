@@ -7,16 +7,17 @@ players = ["John", "Sarah", "Michael", "Emily"]
 # Function to generate fixture for singles or doubles
 def generate_fixture(players, is_doubles):
     fixture = []
-    characters = ["A", "B", "C", "D"]
+    characters = [chr(x) for x in range(65, 65 + len(players) // 2)]
     teams = []
 
     # Create teams
     if is_doubles:
         for i in range(0, len(players), 2):
-            teams.append([characters[i], characters[i+1], players[i], players[i+1]])
+            teams.append([characters[i], characters[i+1], players[i], players[j]])
     else:
-        for char, player in zip(characters, players):
-            teams.append([char, player])
+        for i, player in enumerate(players):
+            teams.append([characters[i], player])
+
 
     # Generate fixture
     for i in range(len(teams)):
